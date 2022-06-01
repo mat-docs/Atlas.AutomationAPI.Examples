@@ -8,6 +8,6 @@ This solution contains the following samples:
 1. C# application. 
 1. MATLAB script.
 
-Both do the same - create a transient parameter, add Waveform Display and add vCar and the new parameter to it. To run start ATLAS, load a session in it and execute the sample application. 
+Both do the same - create a transient parameter, add Waveform Display and add vCar and the new parameter to it. To run start ATLAS, load a session with parameter vCar in it and execute the sample application. 
 
 ATLAS Automation API is available as a Nuget package to registered users from the **[McLaren Applied Nuget Repository](https://github.com/mat-docs/packages)**.
