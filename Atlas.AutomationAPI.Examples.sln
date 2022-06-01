@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloWorld.MATLAB", "HelloWorld.MATLAB", "{66EE48A2-DDEC-4D6A-BB62-8BBFDCB18F14}"
+	ProjectSection(SolutionItems) = preProject
+		HelloWorld.MATLAB\HelloWorld.m = HelloWorld.MATLAB\HelloWorld.m
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloWorld.csharp", "HelloWorld.csharp", "{D9716598-26F3-4D3B-B0D5-205632ED47EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.csharp", "HelloWorld.csharp\HelloWorld.csharp.csproj", "{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2370F833-0480-4671-9DF4-EC6EEBFBAB0B} = {D9716598-26F3-4D3B-B0D5-205632ED47EF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52715758-0BB4-4FE3-A269-1021A43558E9}
+	EndGlobalSection
+EndGlobal
