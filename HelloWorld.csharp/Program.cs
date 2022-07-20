@@ -3,8 +3,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using MAT.Atlas.Automation.Api.Enums;
 using MAT.Atlas.Automation.Client.Services;
 
@@ -21,12 +22,17 @@ namespace HelloWorld.CSharp
         private const double TransientParameterMinimum = 0;
         private const string TransientParameterName = "vCar2 Demo";
 
+        private const string ConnectionStringSqlServer = @"Server=serverIdentifier;Database=databaseName;Trusted_Connection=True;"; //For SQLServer sessions
+        private const string ConnectionStringSsn2 = @"DBEngine=SQLite;Data Source=path\to\database.ssn2"; //For SQLite sessions
+        private const string SessionKey = "0000-0000-0000-0000-0000";
+
         /// <summary>
         ///     This example demonstrates how to add a transient parameter within ATLAS 10. It does this by calling the Client
         ///     directly from within a C# Console Application.
         /// </summary>
         /// <prerequisites>
         ///     As a prerequisite this example expects ATLAS 10 to  be running, and a Session to be loaded into Set 1.
+        ///     Sample code (commented out) was added as an example on how to load a session into a set (SQLServer or SQLite sessions alike)
         /// </prerequisites>
         /// <param name="args"></param>
         public static void Main(string[] args)
@@ -41,6 +47,48 @@ namespace HelloWorld.CSharp
             }
 
             var setId = sets[0].Id;
+
+            // Load session into set (un comment and replace variables as needed)
+            //var applicationService = WaitOnAsync(
+            //    "Connecting to application service",
+            //    () => new ApplicationServiceClient(Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName)),
+            //    service =>
+            //    {
+            //        var version = service.GetVersion();
+            //        return !string.IsNullOrEmpty(version);
+            //    }).Result;
+
+            //var currentSessionsCount = SetServiceClient.Call(client => client.GetCompositeSessions(setId)).Length;
+            //var expectedSessionsCount = currentSessionsCount + 1;
+            //applicationService.Call(client => client.LoadSqlRaceSessions(setId,
+            //    new[] { SessionKey },
+            //    new[] { ConnectionStringSsn2 }));
+            
+            //var isSessionLoaded = WaitOnAsync(
+            //    "Session to load",
+            //    () =>
+            //    {
+            //        var loadedSessions = SetServiceClient.Call(client => client.GetCompositeSessions(setId));
+            //        if (loadedSessions.Length < expectedSessionsCount)
+            //        {
+            //            return false;
+            //        }
+
+            //        if (loadedSessions.Any(s => string.IsNullOrWhiteSpace(s.Name)))
+            //        {
+            //            return false;
+            //        }
+
+            //        var set = SetServiceClient.Call(client => client.GetSet(setId));
+            //        return set.Parameters > 0;
+            //    },
+            //    result => result).Result;
+
+            //if (!isSessionLoaded)
+            //{
+            //    Console.WriteLine($"Session {SessionKey} failed to load! Exiting...");
+            //    return;
+            //}
 
             // Get first session
             var sessions = SetServiceClient.Call(client => client.GetCompositeSessions(setId));
@@ -129,6 +177,49 @@ namespace HelloWorld.CSharp
             {
                 DisplayServiceClient.Call(client => client.AddDisplayParameter(display.Id, transientParameter.Identifier));
             }
+        }
+
+        private static async Task<TResult> WaitOnAsync<TResult>(
+            string description,
+            Func<TResult> getResource,
+            Func<TResult, bool> isReady,
+            TimeSpan? timeout = null)
+        {
+            Console.WriteLine($"Waiting for {description}");
+
+            var startedWaitingAt = DateTime.UtcNow;
+            var waitOnIterations = 30;
+            var delayInMilliseconds = 1000;
+            for (var i = 0; i < waitOnIterations; ++i)
+            {
+                try
+                {
+                    var result = getResource();
+                    if (isReady(result))
+                    {
+                        return result;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw;
+                }
+
+                if (timeout.HasValue)
+                {
+                    var waitedFor = DateTime.UtcNow - startedWaitingAt;
+                    if (waitedFor > timeout.Value)
+                    {
+                        break;
+                    }
+                }
+
+                await Task.Delay(delayInMilliseconds);
+            }
+
+            Console.WriteLine("Timed out!");
+            return default;
         }
     }
 }
