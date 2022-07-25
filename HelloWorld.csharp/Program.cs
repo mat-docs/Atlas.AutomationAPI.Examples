@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using MAT.Atlas.Automation.Api.Enums;
@@ -48,47 +47,14 @@ namespace HelloWorld.CSharp
 
             var setId = sets[0].Id;
 
-            // Load session into set (un comment and replace variables as needed)
-            //var applicationService = WaitOnAsync(
-            //    "Connecting to application service",
-            //    () => new ApplicationServiceClient(Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName)),
-            //    service =>
-            //    {
-            //        var version = service.GetVersion();
-            //        return !string.IsNullOrEmpty(version);
-            //    }).Result;
-
-            //var currentSessionsCount = SetServiceClient.Call(client => client.GetCompositeSessions(setId)).Length;
-            //var expectedSessionsCount = currentSessionsCount + 1;
-            //applicationService.Call(client => client.LoadSqlRaceSessions(setId,
-            //    new[] { SessionKey },
-            //    new[] { ConnectionStringSsn2 }));
-            
-            //var isSessionLoaded = WaitOnAsync(
-            //    "Session to load",
-            //    () =>
-            //    {
-            //        var loadedSessions = SetServiceClient.Call(client => client.GetCompositeSessions(setId));
-            //        if (loadedSessions.Length < expectedSessionsCount)
-            //        {
-            //            return false;
-            //        }
-
-            //        if (loadedSessions.Any(s => string.IsNullOrWhiteSpace(s.Name)))
-            //        {
-            //            return false;
-            //        }
-
-            //        var set = SetServiceClient.Call(client => client.GetSet(setId));
-            //        return set.Parameters > 0;
-            //    },
-            //    result => result).Result;
-
-            //if (!isSessionLoaded)
-            //{
-            //    Console.WriteLine($"Session {SessionKey} failed to load! Exiting...");
-            //    return;
-            //}
+            // Load session into set
+            var sessionLoader = new SessionLoader
+            {
+                ConnectionString = ConnectionStringSsn2,
+                SessionKey = SessionKey,
+                SetId = setId
+            };
+            sessionLoader.LoadAndWait();
 
             // Get first session
             var sessions = SetServiceClient.Call(client => client.GetCompositeSessions(setId));
