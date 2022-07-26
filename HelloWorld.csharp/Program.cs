@@ -21,8 +21,7 @@ namespace HelloWorld.CSharp
         private const double TransientParameterMinimum = 0;
         private const string TransientParameterName = "vCar2 Demo";
 
-        private const string ConnectionStringSqlServer = @"Server=serverIdentifier;Database=databaseName;Trusted_Connection=True;"; //For SQLServer sessions
-        private const string ConnectionStringSsn2 = @"DBEngine=SQLite;Data Source=path\to\database.ssn2"; //For SQLite sessions
+        private const string ConnectionString = @"DBEngine=SQLite;Data Source=path\to\file.ssn2";
         private const string SessionKey = "0000-0000-0000-0000-0000";
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace HelloWorld.CSharp
             // Load session into set
             var sessionLoader = new SessionLoader
             {
-                ConnectionString = ConnectionStringSsn2,
+                ConnectionString = ConnectionString,
                 SessionKey = SessionKey,
                 SetId = setId
             };
