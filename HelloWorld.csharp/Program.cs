@@ -29,8 +29,8 @@ namespace HelloWorld.CSharp
         ///     directly from within a C# Console Application.
         /// </summary>
         /// <prerequisites>
-        ///     As a prerequisite this example expects ATLAS 10 to  be running, and a Session to be loaded into Set 1.
-        ///     Sample code (commented out) was added as an example on how to load a session into a set (SQLServer or SQLite sessions alike)
+        ///     As a prerequisite this example expects ATLAS 10 to  be running.
+        ///     `ConnectionString` and `SessionKey` will need to be modified accordingly to target the desired session.
         /// </prerequisites>
         /// <param name="args"></param>
         public static void Main(string[] args)
