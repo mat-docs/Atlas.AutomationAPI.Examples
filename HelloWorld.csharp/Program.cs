@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using MAT.Atlas.Automation.Api.Enums;
 using MAT.Atlas.Automation.Client.Services;
 
@@ -21,12 +21,16 @@ namespace HelloWorld.CSharp
         private const double TransientParameterMinimum = 0;
         private const string TransientParameterName = "vCar2 Demo";
 
+        private const string ConnectionString = @"DBEngine=SQLite;Data Source=path\to\file.ssn2";
+        private const string SessionKey = "0000-0000-0000-0000-0000";
+
         /// <summary>
         ///     This example demonstrates how to add a transient parameter within ATLAS 10. It does this by calling the Client
         ///     directly from within a C# Console Application.
         /// </summary>
         /// <prerequisites>
-        ///     As a prerequisite this example expects ATLAS 10 to  be running, and a Session to be loaded into Set 1.
+        ///     As a prerequisite this example expects ATLAS 10 to  be running.
+        ///     `ConnectionString` and `SessionKey` will need to be modified accordingly to target the desired session.
         /// </prerequisites>
         /// <param name="args"></param>
         public static void Main(string[] args)
@@ -41,6 +45,15 @@ namespace HelloWorld.CSharp
             }
 
             var setId = sets[0].Id;
+
+            // Load session into set
+            var sessionLoader = new SessionLoader
+            {
+                ConnectionString = ConnectionString,
+                SessionKey = SessionKey,
+                SetId = setId
+            };
+            sessionLoader.LoadAndWait();
 
             // Get first session
             var sessions = SetServiceClient.Call(client => client.GetCompositeSessions(setId));
@@ -129,6 +142,49 @@ namespace HelloWorld.CSharp
             {
                 DisplayServiceClient.Call(client => client.AddDisplayParameter(display.Id, transientParameter.Identifier));
             }
+        }
+
+        private static async Task<TResult> WaitOnAsync<TResult>(
+            string description,
+            Func<TResult> getResource,
+            Func<TResult, bool> isReady,
+            TimeSpan? timeout = null)
+        {
+            Console.WriteLine($"Waiting for {description}");
+
+            var startedWaitingAt = DateTime.UtcNow;
+            var waitOnIterations = 30;
+            var delayInMilliseconds = 1000;
+            for (var i = 0; i < waitOnIterations; ++i)
+            {
+                try
+                {
+                    var result = getResource();
+                    if (isReady(result))
+                    {
+                        return result;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw;
+                }
+
+                if (timeout.HasValue)
+                {
+                    var waitedFor = DateTime.UtcNow - startedWaitingAt;
+                    if (waitedFor > timeout.Value)
+                    {
+                        break;
+                    }
+                }
+
+                await Task.Delay(delayInMilliseconds);
+            }
+
+            Console.WriteLine("Timed out!");
+            return default;
         }
     }
 }
