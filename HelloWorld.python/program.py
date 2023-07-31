@@ -26,7 +26,9 @@ clr.AddReference("System.Core")
 clr.AddReference("System.IO")
 
 if not os.path.isfile(AUTOMATION_API_DLL_PATH):
-    raise Exception(f"Couldn't find Automation API DLL at {AUTOMATION_API_DLL_PATH}.")
+    raise Exception(
+        f"Couldn't find Automation API DLL at {AUTOMATION_API_DLL_PATH}."
+    )
 
 clr.AddReference(AUTOMATION_API_DLL_PATH)
 
@@ -114,21 +116,25 @@ try:
     # Create transient parameter
     groups = [""]
     trasient_parameter = session_service_client.AddTransientParameter(
-        session_id, "vCar2 Demo", "vCar2 Demo", "vCar2 Demo", groups, 0, 800)
+        session_id, "vCar2 Demo", "vCar2 Demo", "vCar2 Demo", groups, 0, 800
+    )
 except Exception as e:
     print(str(e))
     if "ParameterNotAdded" in str(e):
         print("L119 if statement worked")
         trasient_parameter = session_service_client.GetSessionParameter(
-            session_id, "vCar2 Demo")
+            session_id, "vCar2 Demo"
+        )
         session_service_client.RemoveDataFromTransientParameter(
-            session_id, trasient_parameter.Identifier)
+            session_id, trasient_parameter.Identifier
+        )
     else:
         print(str(e))
 
 # Write vCar * 2
 session_service_client.AddTimeDataToTransientParameter(
-    session_id, trasient_parameter.Identifier, timestamps2, data2)
+    session_id, trasient_parameter.Identifier, timestamps2, data2
+)
 
 # Find or create waveform display
 displays = workbook_service_client.GetDisplays()
@@ -136,7 +142,7 @@ displays = workbook_service_client.GetDisplays()
 display_id = None
 for count, display in enumerate(displays):
     if display.Name == "DemoWaveform":
-        display_id = count.Id
+        display_id = display.Id
 
 if display_id == None:
     display = workbook_service_client.CreateDisplay("Waveform", "DemoWaveform")
@@ -160,7 +166,8 @@ if not vCar_display_parameter_present:
 
 if not vCar2_display_parameter_present:
     display_service_client.AddDisplayParameter(
-        display_id, trasient_parameter.Identifier)
+        display_id, trasient_parameter.Identifier
+    )
 
 # Cleanup
 workbook_service_client.Dispose()
