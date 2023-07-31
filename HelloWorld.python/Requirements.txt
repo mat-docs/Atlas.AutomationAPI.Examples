@@ -1,0 +1,12 @@
+List of required modules to run Atlas AutomationAPI-python:
+- os
+- time
+- pythonnet
+- clr
+- System.Collections.Generic
+- System.Collections.ObjectModel
+- System
+- System.IO
+- MAT.Atlas.Automation.Api.Enums
+- MAT.Atlas.Automation.Api.Models
+- MAT.Atlas.Automation.Client.Services

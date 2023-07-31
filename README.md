@@ -7,8 +7,9 @@ ATLAS Automation API allows an external application to control an instance of AT
 This solution contains the following samples: 
 1. C# application. 
 2. MATLAB script.
+3. Python script
 
-Both sample codes do the same<sup>1</sup>: creating a transient parameter, adding a Waveform Display, then `vCar` and the new parameter to it. 
+All sample codes do the same<sup>1</sup>: creating a transient parameter, adding a Waveform Display, then `vCar` and the new parameter to it. 
 
 **Instructions**: Before running, start ATLAS, load a session<sup>1</sup> with parameter `vCar` in it and execute the sample application<sup>2</sup>. 
 
