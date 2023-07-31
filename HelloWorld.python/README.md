@@ -13,7 +13,10 @@
 
 This program is a sample of how to control an instance Atlas that is currently running externally through the APIs available with Python.
 
-**Instructions**: Before running, start ATLAS, load a session<sup>1</sup> with parameter `vCar` in it and execute the sample application<sup>2</sup>. 
+**Instructions**: 
+1. Enter the following line of code into the terminal:
+<code>pip install -r requirements.txt</code>
+2. Before running, start ATLAS, load a session<sup>1</sup> with parameter `vCar` in it and execute the sample application<sup>2</sup>. 
 
 >**Notes:** 
 You will need to reload the session after each run, as the same transient parameter cannot be added twice. 
