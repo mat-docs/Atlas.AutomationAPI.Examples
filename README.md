@@ -19,9 +19,7 @@ Both sample codes do the same<sup>1</sup>: creating a transient parameter, addin
 (<sup>2</sup>) You will need to reload the session after each run, as the same transient parameter cannot be added twice. 
 
 ATLAS Automation API is available as a Nuget package to registered users from the **[McLaren Applied Nuget Repository](https://github.com/mat-docs/packages)**.
-
-
-<img src="/images/malogo.png" width="300" align="right" /><br><br><br>
+<br>
 
 # ATLAS 10 COM API Migration GUIDE!
 
@@ -45,47 +43,47 @@ If you are upgrading ATLAS 10 and plan to use the latest automation DLLs you mus
 N.B. this can be found in the .Net Framework 4 installation folder. This version number may
 vary depending upon the exact .Net version installed.
 - Register MAT.Atlas.Automation.Api.dll with the command below.
+- `regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" /register /tlb /codebase"`
 - Register MAT.Atlas.Automation.Client.dll with the command below.
+- `regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" /register /tlb /codebase"`
 
 ### Register-> .NET 6.0:
 - Download dscom.exe from the release page (https://github.com/dspace-group/dscom, with this library you can register assemblies and classes for COM and programmatically generate TLBs at runtime)
--  Run cmd.exe as administrator, change directory location to  dscom.exe location
+- Run cmd.exe as administrator, change directory location to  dscom.exe location
 
 Register MAT.Atlas.Automation.Api.dll with the commands below.
 
- 1. 'dscom.exe tlbexport "{{full file path to MAT.Atlas.Automation.Api.dll}}"'
- 2. 'dscom.exe tlbregister "{{full file path to newly created tbl file}}"'
+ 1. `dscom.exe tlbexport "{{full file path to MAT.Atlas.Automation.Api.dll}}"`
+ 2. `dscom.exe tlbregister "{{full file path to newly created tbl file}}"`
 
 Register MAT.Atlas.Automation.Client.dll with the command below.
 
- 1. 'dscom.exe tlbexport "{{full file path to MAT.Atlas.Automation.Client.dll}}"'
- 2. 'dscom.exe tlbregister "{{full file path to newly created tbl file}}"'
+ 1. `dscom.exe tlbexport "{{full file path to MAT.Atlas.Automation.Client.dll}}"`
+ 2. `dscom.exe tlbregister "{{full file path to newly created tbl file}}"`
 
 ### Unregister-> .NET Framework
 - Run cmd.exe as administrator
 - Change directory to the location of regasm.exe (Registration Assembly Tool)
 N.B. this can be found in the .Net Framework 4 installation folder. This version number may
 vary depending upon the exact .Net version installed.
-- Register MAT.Atlas.Automation.Api.dll with the command below.
-- Register MAT.Atlas.Automation.Client.dll with the command below.
+- Unregister MAT.Atlas.Automation.Api.dll with the command below.
+- `regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" /unregister /tlb`
+- Unregister MAT.Atlas.Automation.Client.dll with the command below.
+- `regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" /unregister /tlb`
 
 ### Unregister-> .NET 6.0:
 - Run cmd.exe as administrator, change directory location to  dscom.exe location
 - Change directory to the location of regasm.exe (Registration Assembly Tool)
 - UnRegister MAT.Atlas.Automation.Api.dll and MAT.Atlas.Automation.Client.dll with the commands below.
 
- 1. 'dscom.exe tlbunregister "{{full file path to MAT.Atlas.Automation.Api.dll}}"'
- 2. 'dscom.exe tlbunregister "{{full file path to MAT.Atlas.Automation.Client.dll}}"'
+ 1. `dscom.exe tlbunregister "{{full file path to MAT.Atlas.Automation.Api.dll}}"`
+ 2. `dscom.exe tlbunregister "{{full file path to MAT.Atlas.Automation.Client.dll}}"`
 
 ### Debug and Run
-a. Launch ATLAS 10
-b. Load a Session into Set 1 via the Session Browser
-c. Open HelloWorld.Vba.xlsm
-d. Go to the Developer tab
-e. Select Visual Basic
-f. Double click the HelloWord under Modules to open
-g. Add breakpoints in and click the Atlas 10 Hello World button or press F5 to start debugging
-
-
-
-
+- Launch ATLAS 10
+- Load a Session into Set 1 via the Session Browser
+- Open HelloWorld.Vba.xlsm
+- Go to the Developer tab
+- Select Visual Basic
+- Double click the HelloWord under Modules to open
+- Add breakpoints in and click the Atlas 10 Hello World button or press F5 to start debugging
