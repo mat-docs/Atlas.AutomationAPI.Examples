@@ -62,8 +62,8 @@ while connecting:
             Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName)
         )
         connecting = False
-    except Exception:
-        print(f"Unable to connect due to {Exception}. Trying again.")
+    except Exception as e:
+        print(f"Unable to connect due to {e}. Trying again.")
         if i >= 9:
             connecting = False
         else:
@@ -128,8 +128,6 @@ except Exception as e:
         session_service_client.RemoveDataFromTransientParameter(
             session_id, trasient_parameter.Identifier
         )
-    else:
-        print(str(e))
 
 # Write vCar * 2
 session_service_client.AddTimeDataToTransientParameter(
