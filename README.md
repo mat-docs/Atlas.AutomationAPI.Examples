@@ -8,6 +8,7 @@ This solution contains the following samples:
 1. C# application. 
 2. MATLAB script.
 3. Python script
+4. Visual Basic
 
 All sample codes do the same<sup>1</sup>: creating a transient parameter, adding a Waveform Display, then `vCar` and the new parameter to it. 
 
