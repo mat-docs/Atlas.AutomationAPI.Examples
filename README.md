@@ -24,9 +24,11 @@ ATLAS Automation API is available as a Nuget package to registered users from th
 # ATLAS 10 COM API Migration GUIDE!
 
 * **9.2.3 APIs and Libraries**
+
 This example references the following libraries:
 - MAT_Atlas_Automation_Client
 - MAT_Atlas_Automation_Api
+  
 N.B. before these can be used they first must be registered. It is planned for this to be part of the installer once officially released. See Registering Automation API DLLs.
 
 # Registering Automation API DLLs
