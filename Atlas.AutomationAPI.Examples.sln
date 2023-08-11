@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32510.428
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloWorld.MATLAB", "HelloW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloWorld.csharp", "HelloWorld.csharp", "{D9716598-26F3-4D3B-B0D5-205632ED47EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.csharp", "HelloWorld.csharp\HelloWorld.csharp.csproj", "{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld.csharp", "HelloWorld.csharp\HelloWorld.csharp.csproj", "{2370F833-0480-4671-9DF4-EC6EEBFBAB0B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C1664CC-3151-4934-BA2C-BB473F6DE68C}"
 	ProjectSection(SolutionItems) = preProject
