@@ -8,7 +8,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Atlas.AutomationAPI" Version="11.2.3.460" />
+    <PackageReference Include="Atlas.AutomationAPI" Version="*" />
     <PackageReference Include="Autofac" Version="4.5.0" />
     <PackageReference Include="NLog" Version="5.2.3" />
     <PackageReference Include="System.Reactive" Version="4.4.1" />
