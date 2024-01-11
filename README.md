@@ -17,8 +17,9 @@ All sample codes do the same<sup>1</sup>: creating a transient parameter, adding
 >**Notes:**
 >
 ><sup>1</sup> The C\# sample code uses an API call to automatically load a session into set (user will need to modify the constant properties `ConnectionString` and `SessionKey` accordingly). Note that connection strings are constructed differently depending on the database targeted, as follows:
->  - For SQL Server: `Data Source=SQLServer\InstanceName;Initial Catalog=databaseName;Integrated Security=True;`
->  - For SQLite: `DBEngine=SQLite;Data Source=path\to\file.ssn2;`
+>  - For SQL Server: `server=SQLServer\InstanceName;Initial Catalog=databaseName;Trusted_Connection=True;`
+>  - For ssn2: `DbEngine=SQLite;Data Source=path\to\file.ssn2;Pooling=false;`
+>  - For ssndb: `DbEngine=SQLite;Data Source=path\to\file.ssndb;Pooling=false;`
 > 
 > <sup>2</sup> You will need to reload the session after each run, as the same transient parameter cannot be added twice. 
 
