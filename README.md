@@ -44,7 +44,9 @@ VBA):
 - MAT.Atlas.Automation.Client
 - MAT.Atlas.Automation.Api
 
-If you are upgrading ATLAS 10 and plan to use the latest automation DLLs you must unregister previous registrations first. N.B. registration is not required to use the WCF API from C# or MATLAB.
+If you are upgrading ATLAS 10 and plan to use the latest automation DLLs you must unregister previous registrations first. 
+
+N.B. registration is not required to use the WCF API from C#, MATLAB or Python.
 
 ### Register
 - Download dscom.exe from the release page (https://github.com/dspace-group/dscom, with this library you can register assemblies and classes for COM and programmatically generate TLBs at runtime)
