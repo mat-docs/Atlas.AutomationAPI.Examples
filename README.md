@@ -48,7 +48,7 @@ If you are upgrading ATLAS 10 and plan to use the latest automation DLLs you mus
 
 N.B. registration is not required to use the WCF API from C#, MATLAB or Python.
 
-## From ATLAS 11.2.3.465 Onwards (.Net 6)
+## From ATLAS 11.2.3.465 Onwards (.NET 6)
 ### Register
 - Download dscom.exe from the release page (https://github.com/dspace-group/dscom, with this library you can register assemblies and classes for COM and programmatically generate TLBs at runtime)
 - Run cmd.exe *as administrator*, change directory location to  dscom.exe location
