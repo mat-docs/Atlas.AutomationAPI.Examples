@@ -27,7 +27,7 @@ ATLAS Automation API is available as a Nuget package to registered users from th
 
 <br>
 
-# ATLAS Automation API COM Interface
+# COM Interface
 
 A subset of the Automation API are exposed as COM objects. 
 
@@ -37,7 +37,7 @@ This example references the following libraries:
   
 N.B. before these can be used they first must be registered. 
 
-## Registering COM Interface From ATLAS 11.2.3.465 Onwards
+## Registering COM Libraries
 
 The following DLLs need to be registered to allow the WCF API to be usable from COM (and thus
 VBA):
@@ -48,6 +48,7 @@ If you are upgrading ATLAS 10 and plan to use the latest automation DLLs you mus
 
 N.B. registration is not required to use the WCF API from C#, MATLAB or Python.
 
+## From ATLAS 11.2.3.465 Onwards (.Net 6)
 ### Register
 - Download dscom.exe from the release page (https://github.com/dspace-group/dscom, with this library you can register assemblies and classes for COM and programmatically generate TLBs at runtime)
 - Run cmd.exe *as administrator*, change directory location to  dscom.exe location
@@ -75,7 +76,6 @@ Register MAT.Atlas.Automation.Client.dll with the command below.
 .\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 .\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
 ```
-
 ### Debug and Run
 - Launch ATLAS 10
 - Load a Session into Set 1 via the Session Browser
@@ -85,8 +85,7 @@ Register MAT.Atlas.Automation.Client.dll with the command below.
 - Double click the HelloWord under Modules to open
 - Add breakpoints in and click the Atlas 10 Hello World button or press F5 to start debugging
 
-## Registering COM Interface Prior To ATLAS 11.2.3.465
-
+## Prior To ATLAS 11.2.3.465 (.NET 4)
 ### Register
 - Run cmd.exe as administrator
 - Change directory to the location of regasm.exe (Registration Assembly Tool)
@@ -108,3 +107,12 @@ vary depending upon the exact .Net version installed.
 .\regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" /unregister /tlb
 .\regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" /unregister /tlb
 ```
+
+### Debug and Run
+- Launch ATLAS 10
+- Load a Session into Set 1 via the Session Browser
+- Open HelloWorld.Vba.xlsm
+- Go to the Developer tab
+- Select Visual Basic
+- Double click the HelloWord under Modules to open
+- Add breakpoints in and click the Atlas 10 Hello World button or press F5 to start debugging
