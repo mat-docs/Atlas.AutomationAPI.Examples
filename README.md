@@ -56,15 +56,22 @@ N.B. registration is not required to use the WCF API from C#, MATLAB or Python.
 Register MAT.Atlas.Automation.Api.dll with the commands below.
 
 ```
-.\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll"
+.\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" --out "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 .\dscom.exe tlbregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 ```
 
 Register MAT.Atlas.Automation.Client.dll with the command below.
 
 ```
-.\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll"
+.\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" --out "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
 .\dscom.exe tlbregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
+```
+
+Register both libraries to the registry with regsvr32
+```
+cd C:\Windows\System32\
+.\regsvr32.exe "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.comhost.dll"
+.\regsvr32.exe "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.comhost.dll"
 ```
 
 ### Unregister
@@ -75,6 +82,13 @@ Register MAT.Atlas.Automation.Client.dll with the command below.
 ```
 .\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 .\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
+```
+
+Unregister both libraries from the registry with regsvr32
+```
+cd C:\Windows\System32
+.\regsvr32.exe /u "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.comhost.dll"
+.\regsvr32.exe /u "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.comhost.dll"
 ```
 ### Debug and Run
 - Launch ATLAS 10
