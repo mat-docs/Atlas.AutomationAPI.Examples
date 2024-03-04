@@ -53,21 +53,20 @@ N.B. registration is not required to use the WCF API from C#, MATLAB or Python.
 - Download dscom.exe from the release page (https://github.com/dspace-group/dscom, with this library you can register assemblies and classes for COM and programmatically generate TLBs at runtime)
 - Run cmd.exe *as administrator*, change directory location to  dscom.exe location
 
-Register MAT.Atlas.Automation.Api.dll with the commands below.
-
+- Register MAT.Atlas.Automation.Api.dll with the commands below.
 ```
 .\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" --out "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 .\dscom.exe tlbregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 ```
 
-Register MAT.Atlas.Automation.Client.dll with the command below.
-
+- Register MAT.Atlas.Automation.Client.dll with the command below.
 ```
 .\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" --out "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
 .\dscom.exe tlbregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
 ```
 
-Register both libraries to the registry with regsvr32
+- Change directory location to `C:\Windows\System32`
+- Register both libraries to the registry with regsvr32
 ```
 cd C:\Windows\System32\
 .\regsvr32.exe "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.comhost.dll"
@@ -75,16 +74,16 @@ cd C:\Windows\System32\
 ```
 
 ### Unregister
-- Run cmd.exe *as administrator*, change directory location to dscom.exe location
-- Change directory to the location of regasm.exe (Registration Assembly Tool)
+- Run cmd.exe *as administrator*
+- Change directory location to dscom.exe location
 - UnRegister MAT.Atlas.Automation.Api.dll and MAT.Atlas.Automation.Client.dll with the commands below.
-
 ```
 .\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
 .\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
 ```
 
-Unregister both libraries from the registry with regsvr32
+- Change directory location to `C:\Windows\System32`
+- Unregister both libraries from the registry with regsvr32
 ```
 cd C:\Windows\System32
 .\regsvr32.exe /u "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.comhost.dll"
