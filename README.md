@@ -1,6 +1,6 @@
 <img src="/images/malogo.png" width="300" align="right" /><br><br><br>
 
-# McLaren Applied **ATLAS Automation API Sample Code**.
+# Motion Applied **ATLAS Automation API Sample Code**.
 
 ATLAS Automation API allows an external application to control an instance of ATLAS that is currently running.
 
