@@ -1,6 +1,6 @@
-<img src="/images/malogo.png" width="300" align="right" /><br><br><br>
+<img src="/images/MotionAppliedLogo.png" width="300" align="right" /><br><br><br>
 
-# McLaren Applied **ATLAS Automation API Python Sample Code**.
+# Motion Applied **ATLAS Automation API Python Sample Code**.
 
 1. Imports modules and stores paths (1-51)
 2. Opens Atlas and confirms connection (54-71)
