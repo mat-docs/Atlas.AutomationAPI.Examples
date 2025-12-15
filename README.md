@@ -1,6 +1,6 @@
-<img src="/images/malogo.png" width="300" align="right" /><br><br><br>
+<img src="/images/MotionAppliedLogo.png" width="300" align="right" /><br><br><br>
 
-# McLaren Applied **ATLAS Automation API Sample Code**.
+# Motion Applied **ATLAS Automation API Sample Code**.
 
 ATLAS Automation API allows an external application to control an instance of ATLAS that is currently running.
 
@@ -23,7 +23,7 @@ All sample codes do the same<sup>1</sup>: creating a transient parameter, adding
 > 
 > <sup>2</sup> You will need to reload the session after each run, as the same transient parameter cannot be added twice. 
 
-ATLAS Automation API is available as a Nuget package to registered users from the **[McLaren Applied Nuget Repository](https://github.com/mat-docs/packages)**.
+ATLAS Automation API is available as a Nuget package to registered users from the **[Motion Applied Nuget Repository](https://github.com/mat-docs/packages)**.
 
 <br>
 
