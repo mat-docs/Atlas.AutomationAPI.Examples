@@ -9,9 +9,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Atlas.AutomationAPI" Version="*" />
-    <PackageReference Include="Autofac" Version="4.5.0" />
-    <PackageReference Include="NLog" Version="5.2.3" />
-    <PackageReference Include="System.Reactive" Version="4.4.1" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
   </ItemGroup>
 </Project>
