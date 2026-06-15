@@ -1,4 +1,15 @@
 Attribute VB_Name = "HelloWorld"
+' ATLAS Automation API Example: HelloWorld (Excel VBA via COM)
+'
+' Reads vCar:Chassis, derives vCar-50 as a transient parameter, and adds both to
+' a waveform display - the same workflow as the C#, Python and MATLAB examples.
+'
+' Prerequisites:
+'   - The COM interface is registered (see docs/com-interop.md)
+'   - ATLAS 11+ is running with a session containing vCar:Chassis loaded into Set 1
+'
+' Note: a transient parameter cannot be added twice, so reload the session
+'       before re-running.
 Sub HelloWorldAtlas10()
 
 ' Services
@@ -52,17 +63,17 @@ data2 = parameterValues.data
 For N = 0 To parameterValues.SampleCountVba - 1
     data2(N) = data2(N) - 50
 Next N
-    
+
 ' Create transient parameter
 Dim transientParameter As MAT_Atlas_Automation_Api.parameter
-Set transientParameter = sessionsService.AddTransientParameterVba(session.ID, "vCar2 Demo", "vCar2 Demo", "vCar2 Demo", "", 0#, 800#)
+Set transientParameter = sessionsService.AddTransientParameterVba(session.ID, "vCarMinus50:Demo", "vCarMinus50", "vCar offset by 50 km/h", "Demo", 0#, 800#)
 
 ' Write vCar - 50
 Call sessionsService.AddTimeDataToTransientParameterVba(session.ID, transientParameter.Identifier, parameterValues.TimeVba, data2)
 
 ' Create waveform display
 Dim display As MAT_Atlas_Automation_Api.display
-Set display = workbookService.CreateDisplay("Waveform", "VBA Demo")
+Set display = workbookService.CreateDisplay("Waveform", "Automation Demo")
 
 ' Add parameters to waveform
 Call displayService.AddDisplayParameter(display.ID, parameter.Identifier)

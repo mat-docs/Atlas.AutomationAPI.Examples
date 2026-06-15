@@ -1,0 +1,17 @@
+<Project>
+
+  <!-- Common settings shared by every example project. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <!-- The Automation API, from the Motion Applied NuGet feed (registered users). -->
+  <ItemGroup>
+    <PackageReference Include="Atlas.AutomationAPI" Version="*" />
+  </ItemGroup>
+
+</Project>

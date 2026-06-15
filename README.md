@@ -1,135 +1,101 @@
-<img src="/images/MotionAppliedLogo.png" width="300" align="right" /><br><br><br>
+<img src="images/MotionAppliedLogo.png" alt="Motion Applied" width="280" align="right" /><br><br><br>
 
-# Motion Applied **ATLAS Automation API Sample Code**.
+# ATLAS Automation API Examples
 
-ATLAS Automation API allows an external application to control an instance of ATLAS that is currently running.
+Examples for the **ATLAS Automation API** — a .NET API that lets an external
+application control a running instance of ATLAS: load sessions, build pages and
+displays, create calculated (transient) parameters, read samples, and more.
 
-This solution contains the following samples: 
-1. C# application. 
-2. MATLAB script.
-3. Python script
-4. Visual Basic
+ATLAS is used across **motorsport, aerospace, automotive, energy and defence**
+for recording and analysing high-frequency sensor data.
 
-All sample codes do the same<sup>1</sup>: creating a transient parameter, adding a Waveform Display, then `vCar` and the new parameter to it. 
+> **ATLAS must be running.** Unlike a file-based data library, the Automation API
+> drives the ATLAS application itself over WCF. Start ATLAS 11+ before running any
+> example.
 
-**Instructions**: Before running, start ATLAS, load a session<sup>1</sup> with parameter `vCar` in it and execute the sample application<sup>2</sup>. 
+## Quick Start
 
->**Notes:**
->
-><sup>1</sup> The C\# sample code uses an API call to automatically load a session into set (user will need to modify the constant properties `ConnectionString` and `SessionKey` accordingly). Note that connection strings are constructed differently depending on the database targeted, as follows:
->  - For SQL Server: `server=SQLServer\InstanceName;Initial Catalog=databaseName;Trusted_Connection=True;`
->  - For ssn2: `DbEngine=SQLite;Data Source=path\to\file.ssn2;Pooling=false;`
->  - For ssndb: `DbEngine=SQLite;Data Source=path\to\file.ssndb;Pooling=false;`
-> 
-> <sup>2</sup> You will need to reload the session after each run, as the same transient parameter cannot be added twice. 
+```bash
+# 1. Create a console project
+dotnet new console -n TryAtlas
+cd TryAtlas
 
-ATLAS Automation API is available as a Nuget package to registered users from the **[Motion Applied Nuget Repository](https://github.com/mat-docs/packages)**.
+# 2. Add the Automation API package (registered users — see Prerequisites)
+dotnet add package Atlas.AutomationAPI
 
-<br>
-
-# COM Interface
-
-A subset of the Automation API are exposed as COM objects. 
-
-This example references the following libraries:
-- MAT_Atlas_Automation_Client
-- MAT_Atlas_Automation_Api
-  
-N.B. before these can be used they first must be registered. 
-
-## Registering COM Libraries
-
-The following DLLs need to be registered to allow the WCF API to be usable from COM (and thus
-VBA):
-- MAT.Atlas.Automation.Client
-- MAT.Atlas.Automation.Api
-
-If you are upgrading ATLAS 10 and plan to use the latest automation DLLs you must unregister previous registrations first. 
-
-N.B. registration is not required to use the WCF API from C#, MATLAB or Python.
-
-## .NET 8
-Applicable from **ATLAS 11.4.4.349-W47 onwards**
- 
-## .NET 6
-Applicable from **ATLAS 11.2.3.465 onwards**
-### Register
-- Download dscom.exe from the release page (https://github.com/dspace-group/dscom, with this library you can register assemblies and classes for COM and programmatically generate TLBs at runtime)
-- Run cmd.exe *as administrator*, change directory location to  dscom.exe location
-
-- Register MAT.Atlas.Automation.Api.dll with the commands below.
-```
-.\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" --out "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
-.\dscom.exe tlbregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
+# 3. Copy a snippet into Program.cs and run (with ATLAS open)
+#    e.g. snippets/csharp/getting-started/01-connect-to-atlas.cs
+dotnet run
 ```
 
-- Register MAT.Atlas.Automation.Client.dll with the command below.
+## I want to...
+
+| Task | Language | Example |
+|------|----------|---------|
+| Connect to ATLAS and read its version | C# | [`01-connect-to-atlas.cs`](snippets/csharp/getting-started/01-connect-to-atlas.cs) |
+| List the sets and loaded sessions | C# | [`02-list-sets-and-sessions.cs`](snippets/csharp/getting-started/02-list-sets-and-sessions.cs) |
+| Load a session into a set | C# | [`03-load-session-into-set.cs`](snippets/csharp/getting-started/03-load-session-into-set.cs) |
+| Read samples for a parameter | C# | [`04-read-parameter-samples.cs`](snippets/csharp/getting-started/04-read-parameter-samples.cs) |
+| Create a waveform display | C# | [`create-waveform-display.cs`](snippets/csharp/displays/create-waveform-display.cs) |
+| Add parameters to a display | C# | [`add-parameters-to-display.cs`](snippets/csharp/displays/add-parameters-to-display.cs) |
+| Create a page with displays | C# | [`create-page-with-displays.cs`](snippets/csharp/displays/create-page-with-displays.cs) |
+| Create a transient parameter | C# | [`add-transient-parameter.cs`](snippets/csharp/parameters/add-transient-parameter.cs) |
+| Derive a channel and plot it | C# | [`compute-and-write-transient.cs`](snippets/csharp/parameters/compute-and-write-transient.cs) |
+| Compute parameter statistics | C# | [`parameter-statistics.cs`](snippets/csharp/parameters/parameter-statistics.cs) |
+| Read laps and events | C# | [`laps-and-events.cs`](snippets/csharp/sessions/laps-and-events.cs) |
+| Read/write session metadata | C# | [`session-details.cs`](snippets/csharp/sessions/session-details.cs) |
+| Connect and read samples | Python | [`01_connect_to_atlas.py`](snippets/python/getting-started/01_connect_to_atlas.py) |
+| Connect and read samples | MATLAB | [`connect_to_atlas.m`](snippets/matlab/getting-started/connect_to_atlas.m) |
+| Drive ATLAS from Excel | VBA | [`projects/vba`](projects/vba/) |
+
+See [snippets/README.md](snippets/README.md) for the complete index.
+
+## Repository Map
+
 ```
-.\dscom.exe tlbexport "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" --out "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
-.\dscom.exe tlbregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
+Atlas.AutomationAPI.Examples/
+├── snippets/    Tier 1 — single-file, copy-paste examples (C#, Python, MATLAB)
+├── projects/    Tier 2 — complete, buildable apps + a shared Core library, and the VBA/COM example
+├── notebooks/   Tier 3 — interactive Jupyter notebooks (pythonnet)
+├── docs/        Guides: getting started, connection strings, COM interop, troubleshooting
+├── scripts/     CI helpers (snippet compile-checking)
+└── images/      Logos
 ```
 
-- Change directory location to `C:\Windows\System32`
-- Register both libraries to the registry with regsvr32
-```
-cd C:\Windows\System32\
-.\regsvr32.exe "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.comhost.dll"
-.\regsvr32.exe "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.comhost.dll"
-```
+### Tiers explained
 
-### Unregister
-- Run cmd.exe *as administrator*
-- Change directory location to dscom.exe location
-- UnRegister MAT.Atlas.Automation.Api.dll and MAT.Atlas.Automation.Client.dll with the commands below.
-```
-.\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.tlb"
-.\dscom.exe tlbunregister "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.tlb"
-```
+| Tier | What | Who it's for |
+|------|------|-------------|
+| **Snippets** | Single-file, self-contained examples. Copy, paste, run. | Anyone evaluating the API or wanting a quick recipe. |
+| **Projects** | Buildable solutions with a shared `Core` library. | Teams building real applications. |
+| **Notebooks** | Interactive notebooks with narrative and plots. | Engineers exploring session data live. |
 
-- Change directory location to `C:\Windows\System32`
-- Unregister both libraries from the registry with regsvr32
-```
-cd C:\Windows\System32
-.\regsvr32.exe /u "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.comhost.dll"
-.\regsvr32.exe /u "C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.comhost.dll"
-```
-### Debug and Run
-- Launch ATLAS 10
-- Load a Session into Set 1 via the Session Browser
-- Open HelloWorld.Vba.xlsm
-- Go to the Developer tab
-- Select Visual Basic
-- Double click the HelloWord under Modules to open
-- Add breakpoints in and click the Atlas 10 Hello World button or press F5 to start debugging
+## Language Support
 
-## Prior To ATLAS 11.2.3.465 (.NET 4)
-### Register
-- Run cmd.exe as administrator
-- Change directory to the location of regasm.exe (Registration Assembly Tool)
-N.B. this can be found in the .Net Framework 4 installation folder. This version number may
-vary depending upon the exact .Net version installed.
-- Register MAT.Atlas.Automation.Api.dll and MAT.Atlas.Automation.Client.dll with the command below.
-```
-.\regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" /register /tlb /codebase
-.\regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" /register /tlb /codebase
-```
+| Language | Snippets | Projects | Notebooks |
+|----------|:--------:|:--------:|:---------:|
+| C# (.NET 8) | Yes | Yes | — |
+| Python (pythonnet) | Yes | — | Yes |
+| MATLAB (.NET interop) | Yes | — | — |
+| Visual Basic (COM) | — | Yes | — |
 
-### Unregister
-- Run cmd.exe as administrator
-- Change directory to the location of regasm.exe (Registration Assembly Tool)
-N.B. this can be found in the .Net Framework 4 installation folder. This version number may
-vary depending upon the exact .Net version installed.
-- Unregister MAT.Atlas.Automation.Api.dll and MAT.Atlas.Automation.Client.dll with the command below.
-```
-.\regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Api.dll" /unregister /tlb
-.\regasm "c:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Automation.Client.dll" /unregister /tlb
-```
+## Prerequisites
 
-### Debug and Run
-- Launch ATLAS 10
-- Load a Session into Set 1 via the Session Browser
-- Open HelloWorld.Vba.xlsm
-- Go to the Developer tab
-- Select Visual Basic
-- Double click the HelloWord under Modules to open
-- Add breakpoints in and click the Atlas 10 Hello World button or press F5 to start debugging
+- **ATLAS 11+** running on the machine
+- **.NET 8 SDK** — [Download](https://dotnet.microsoft.com/download/dotnet/8.0)
+- **`Atlas.AutomationAPI`** NuGet package from the
+  [Motion Applied NuGet feed](https://github.com/mat-docs/packages) (registered users)
+- Python 3.8+ / MATLAB / Excel as needed for those languages
+
+See [docs/getting-started.md](docs/getting-started.md) for full setup, and
+[CONCEPTS.md](CONCEPTS.md) for the object model.
+
+## A note on COM / VBA
+
+Using the API from **C#, Python or MATLAB needs no registration**. Only the
+COM-based VBA example requires the libraries to be registered first — see
+[docs/com-interop.md](docs/com-interop.md).
+
+## License
+
+Provided by Motion Applied Ltd. as sample code for the ATLAS Automation API.

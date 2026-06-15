@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Atlas.Automation.Examples.HelloWorld</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Atlas.Automation.Examples.Core\Atlas.Automation.Examples.Core.csproj" />
+  </ItemGroup>
+
+</Project>
